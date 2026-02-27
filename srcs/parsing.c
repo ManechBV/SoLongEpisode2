@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 21:04:33 by mabenois          #+#    #+#             */
-/*   Updated: 2026/02/27 01:58:42 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/02/27 02:21:19 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,17 @@ static int	ft_convert_map(char *filename, t_map *map)
 	if (fd == -1)
 		return (ft_error("map can't be opened."));
 	tmp = get_next_line(fd);
-	y = 0;
+	y = -1;
 	while (tmp)
 	{
-		map->map[y] = malloc(sizeof(int) * map->w);
+		map->map[++y] = malloc(sizeof(int) * map->w);
 		if (!map->map[y])
 			return (ft_error_free_map(map, y, tmp, fd));
-		ft_printf("\nstrlen: %d\nmap->w: %d\n", ft_strlen(tmp), map->w);
 		if (ft_check_line_w(tmp, (size_t) map->w) == -1)
 			return (ft_error_free_map(map, y, tmp, fd));
 		x = -1;
 		while (++x < map->w)
 			map->map[y][x] = ft_convert_chr(tmp[x]);
-		y++;
 		free(tmp);
 		tmp = get_next_line(fd);
 	}
@@ -123,6 +121,7 @@ int	read_and_parse(t_vars *vars, char *filename)
 	vars->map = ft_new_map(fd, filename);
 	if (!vars->map)
 		return (-1);
-	
+	//if (ft_check_map_flood(vars->map) == -1)
+	//	return (-1);
 	return (0);
 }
