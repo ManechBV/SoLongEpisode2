@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 21:04:33 by mabenois          #+#    #+#             */
-/*   Updated: 2026/02/27 02:21:19 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/02/28 04:06:16 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ static t_map	*ft_new_map(int fd, char *filename)
 int	read_and_parse(t_vars *vars, char *filename)
 {
 	int	fd;
+	int	i;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
@@ -121,7 +122,15 @@ int	read_and_parse(t_vars *vars, char *filename)
 	vars->map = ft_new_map(fd, filename);
 	if (!vars->map)
 		return (-1);
-	//if (ft_check_map_flood(vars->map) == -1)
-	//	return (-1);
+	if (ft_check_map_flood(vars->map) == -1)
+	{
+		i = -1;
+		while (++i < vars->map->h)
+			if (vars->map->map[i] != NULL)
+				free(vars->map->map[i]);
+		free(vars->map->map);
+		free(vars->map);
+		return (-1);
+	}
 	return (0);
 }

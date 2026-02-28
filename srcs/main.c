@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 19:39:28 by mabenois          #+#    #+#             */
-/*   Updated: 2026/02/27 02:13:20 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/02/28 04:04:50 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,17 @@ int	main(int ac, char **av)
 		return (ft_error("Not enough args."));
 	if (read_and_parse(&vars, av[1]) != 0)
 		return (-1);
+
 	ft_printf("map:\n");
 	for (int y = 0; y < vars.map->h; y++)
 	{
 		for (int x = 0; x < vars.map->w; x++)
-			ft_printf(" %d ", vars.map->map[y][x]);
+		{
+			if (vars.map->map[y][x] == 0)	
+				ft_printf("_");
+			else
+				ft_printf("%d", vars.map->map[y][x]);
+		}
 		ft_printf("\n");
 	}
 	/*
