@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:54:35 by mabenois          #+#    #+#             */
-/*   Updated: 2026/02/28 04:08:48 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/02/28 04:56:53 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int		read_and_parse(t_vars *vars, char *filename);
 void	free_vars(t_vars *vars);
 int		ft_error_free_map(t_map *map, int y, char *tmp, int fd);
 int		ft_check_line_w(char *tmp, size_t map_w);
+int		ft_check_border(t_map *map);
 
 //	parsing_flood.c
 int		ft_check_map_flood(t_map *map);
