@@ -3,6 +3,7 @@ SRCS = srcs/main.c \
 		srcs/parsing.c \
 		srcs/parsing2.c \
 		srcs/parsing_flood.c \
+		srcs/ft_window.c \
 		srcs/get_next_line.c \
 		srcs/get_next_line_utils.c
 OBJS = $(SRCS:srcs/%.c=objs/%.o)
