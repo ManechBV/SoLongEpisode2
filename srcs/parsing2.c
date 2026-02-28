@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 00:07:29 by mabenois          #+#    #+#             */
-/*   Updated: 2026/02/28 05:06:14 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:14:57 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static int	map_occ(t_map *map, int val)
 	return (occ);
 }
 
-int	ft_check_border(t_map *map)
+int	ft_check_border(t_map *map, int *coin_left)
 {
 	int	x;
 	int	y;
@@ -105,5 +105,6 @@ int	ft_check_border(t_map *map)
 		return (ft_error("Wrong number of C or P."));
 	if (map_occ(map, E) != 1)
 		return (ft_error("Wrong number of E."));
+	*coin_left = map_occ(map, C);
 	return (0);
 }

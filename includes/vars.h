@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:54:35 by mabenois          #+#    #+#             */
-/*   Updated: 2026/02/28 07:41:51 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:43:41 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct	s_vars
 	t_mlx_vars	*mlx_vars;
 	t_imgs		*imgs;
 	t_timers	*timers;
+	int			below_player;
+	int			coin_left;
 }	t_vars;
 
 //	ft_error.c
@@ -67,7 +69,7 @@ int		read_and_parse(t_vars *vars, char *filename);
 void	free_vars(t_vars *vars);
 int		ft_error_free_map(t_map *map, int y, char *tmp, int fd);
 int		ft_check_line_w(char *tmp, size_t map_w);
-int		ft_check_border(t_map *map);
+int		ft_check_border(t_map *map, int *coin_left);
 
 //	parsing_flood.c
 int		ft_check_map_flood(t_map *map);
@@ -78,6 +80,7 @@ int		ft_destroy_mlx(t_vars *vars);
 
 //	hooks.c
 void	window_hook(int event, void *param);
+void	key_hook(int key, void *param);
 void	update_loop(void *param);
 
 //	draw.c

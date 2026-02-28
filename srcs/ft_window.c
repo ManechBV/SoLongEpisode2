@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 05:33:17 by mabenois          #+#    #+#             */
-/*   Updated: 2026/02/28 07:51:54 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/02/28 08:43:13 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	ft_load_mlx(t_vars *vars)
 {
+	vars->below_player = 0;
 	vars->timers = malloc(sizeof(t_timers));
 	if (!vars->timers)
 		return (-1);
@@ -43,6 +44,8 @@ int	ft_load_mlx(t_vars *vars)
 	mlx_set_fps_goal(vars->mlx_vars->mlx, 60);
 	mlx_on_event(vars->mlx_vars->mlx, vars->mlx_vars->win, MLX_WINDOW_EVENT,
 		window_hook, vars);
+	mlx_on_event(vars->mlx_vars->mlx, vars->mlx_vars->win, MLX_KEYDOWN,
+		key_hook, vars);
 	mlx_add_loop_hook(vars->mlx_vars->mlx, update_loop, vars);
 	vars->imgs = malloc(sizeof(t_imgs));
 	if (!vars->imgs)
