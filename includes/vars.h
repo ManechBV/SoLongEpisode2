@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:54:35 by mabenois          #+#    #+#             */
-/*   Updated: 2026/02/28 07:19:40 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/02/28 07:41:51 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,12 @@ int		ft_check_map_flood(t_map *map);
 //	ft_window.c
 int		ft_load_mlx(t_vars *vars);
 int		ft_destroy_mlx(t_vars *vars);
+
+//	hooks.c
 void	window_hook(int event, void *param);
 void	update_loop(void *param);
+
+//	draw.c
 void	ft_draw_map(t_vars *vars);
 
 #endif
