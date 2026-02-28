@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/27 00:07:29 by mabenois          #+#    #+#             */
-/*   Updated: 2026/02/28 04:08:00 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/02/28 04:51:59 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	free_vars(t_vars *vars)
 int	ft_error_free_map(t_map *map, int y, char *tmp, int fd)
 {
 	char	*line;
+
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -60,4 +61,3 @@ int	ft_check_line_w(char *tmp, size_t map_w)
 	}
 	return (-1);
 }
-
