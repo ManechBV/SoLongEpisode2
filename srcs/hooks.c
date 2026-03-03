@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 07:40:43 by mabenois          #+#    #+#             */
-/*   Updated: 2026/03/03 23:26:13 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/03/04 00:10:45 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static void	move_player(t_vars *vars, int dx, int dy)
 					vars->map->map[y][x] = vars->below_player;
 					vars->below_player = target;
 					vars->moves++;
+					ft_printf("\nmoves: %d", vars->moves);
 				}
 				return ;
 			}
