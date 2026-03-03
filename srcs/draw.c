@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 07:42:12 by mabenois          #+#    #+#             */
-/*   Updated: 2026/02/28 08:37:37 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/03/03 21:45:11 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ static void	draw_frame(t_vars *vars, int i, int x, int y)
 	oy = 0;
 	get_offset(vars, &ox, &oy);
 	mlx_get_image_region(vars->mlx_vars->mlx, vars->imgs->tileset,
-			i * 60, 0, 60, 60, pix);
+		i * 60, 0, 60, 60, pix);
 	mlx_pixel_put_region(vars->mlx_vars->mlx,
-			vars->mlx_vars->win, ox + (x * 60), oy + (y * 60),
-			60, 60, pix);
+		vars->mlx_vars->win, ox + (x * 60), oy + (y * 60),
+		60, 60, pix);
 }
 
 void	ft_draw_map(t_vars *vars)
