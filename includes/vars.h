@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:54:35 by mabenois          #+#    #+#             */
-/*   Updated: 2026/02/28 08:43:41 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/03/03 23:22:49 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define P 2
 # define C 3
 # define E 4
+# define SMOOTH 4
 
 # include <fcntl.h>
 # include "ft_printf.h"
@@ -35,6 +36,9 @@ typedef struct	s_mlx_vars
 	mlx_context				mlx;
 	mlx_window_create_info	info;
 	mlx_window				win;
+	mlx_image				target;
+	mlx_window_create_info	target_info;
+	mlx_window				target_win;
 }	t_mlx_vars;
 
 typedef struct	s_imgs
@@ -57,6 +61,9 @@ typedef struct	s_vars
 	t_timers	*timers;
 	int			below_player;
 	int			coin_left;
+	int			cam_dx;
+	int			cam_dy;
+	int			moves;
 }	t_vars;
 
 //	ft_error.c
@@ -85,5 +92,6 @@ void	update_loop(void *param);
 
 //	draw.c
 void	ft_draw_map(t_vars *vars);
+void	get_offset(t_vars *vars, int *dx, int *dy);
 
 #endif

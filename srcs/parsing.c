@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 21:04:33 by mabenois          #+#    #+#             */
-/*   Updated: 2026/03/03 21:44:19 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/03/03 22:32:33 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ static t_map	*ft_new_map(int fd, char *filename)
 	if (map->w == 0 || map->h == 0)
 	{
 		free(map);
+		ft_error("invalid map.");
 		return (NULL);
 	}
 	map->map = malloc(sizeof(int *) * map->h);

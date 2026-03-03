@@ -6,18 +6,32 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 05:33:17 by mabenois          #+#    #+#             */
-/*   Updated: 2026/03/03 21:42:13 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/03/03 23:23:03 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vars.h"
+
+static int	ft_load_mlx3(t_vars *vars)
+{
+	vars->mlx_vars->target = mlx_new_image(vars->mlx_vars->mlx,
+			vars->map->w * 60, vars->map->h * 60);
+	if (!vars->mlx_vars->target)
+		return (ft_destroy_mlx(vars));
+	vars->mlx_vars->target_info.render_target = vars->mlx_vars->target;
+	vars->mlx_vars->target_win = mlx_new_window(vars->mlx_vars->mlx,
+		&vars->mlx_vars->target_info);
+	mlx_set_fps_goal(vars->mlx_vars->mlx, 60);
+	mlx_set_font_scale(vars->mlx_vars->mlx, "res/font.ttf", 69.0);
+	vars->moves = 0;
+	return (0);
+}
 
 static int	ft_load_mlx2(t_vars *vars)
 {
 	vars->mlx_vars->info.is_fullscreen = 0;
 	vars->mlx_vars->win = mlx_new_window(vars->mlx_vars->mlx,
 			&vars->mlx_vars->info);
-	mlx_set_fps_goal(vars->mlx_vars->mlx, 60);
 	mlx_on_event(vars->mlx_vars->mlx, vars->mlx_vars->win, MLX_WINDOW_EVENT,
 		window_hook, vars);
 	mlx_on_event(vars->mlx_vars->mlx, vars->mlx_vars->win, MLX_KEYDOWN,
@@ -33,7 +47,7 @@ static int	ft_load_mlx2(t_vars *vars)
 		ft_error("Failed to load image.");
 		return (ft_destroy_mlx(vars));
 	}
-	return (0);
+	return (ft_load_mlx3(vars));
 }
 
 int	ft_load_mlx(t_vars *vars)
@@ -67,8 +81,13 @@ int	ft_load_mlx(t_vars *vars)
 
 int	ft_destroy_mlx(t_vars *vars)
 {
+	if (vars->mlx_vars->target_win != NULL)
+		mlx_destroy_window(vars->mlx_vars->mlx, vars->mlx_vars->target_win);
+	if (vars->mlx_vars->target != NULL)
+		mlx_destroy_image(vars->mlx_vars->mlx, vars->mlx_vars->target);
 	if (vars->imgs->tileset != NULL)
 		mlx_destroy_image(vars->mlx_vars->mlx, vars->imgs->tileset);
+	
 	mlx_destroy_window(vars->mlx_vars->mlx, vars->mlx_vars->win);
 	mlx_destroy_context(vars->mlx_vars->mlx);
 	free(vars->mlx_vars);

@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 07:40:43 by mabenois          #+#    #+#             */
-/*   Updated: 2026/02/28 08:26:40 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/03/03 23:26:13 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,27 @@ static void	update_timers(t_vars *vars)
 void	update_loop(void *param)
 {
 	t_vars	*vars;
+	int		ox;
+	int		oy;
 
 	vars = (t_vars *) param;
 	update_timers(vars);
+	mlx_clear_window(vars->mlx_vars->mlx, vars->mlx_vars->target_win,
+		(mlx_color){.rgba = 0x101010FF});
 	mlx_clear_window(vars->mlx_vars->mlx, vars->mlx_vars->win,
 		(mlx_color){.rgba = 0x101010FF});
 	ft_draw_map(vars);
+	ox = 0;
+	oy = 0;
+	get_offset(vars, &ox, &oy);
+	vars->cam_dx += (ox - vars->cam_dx) / SMOOTH;
+	vars->cam_dy += (oy - vars->cam_dy) / SMOOTH;
+	mlx_put_image_to_window(vars->mlx_vars->mlx, vars->mlx_vars->win,
+		vars->mlx_vars->target, vars->cam_dx, vars->cam_dy);
+	mlx_string_put(vars->mlx_vars->mlx, vars->mlx_vars->win,
+		vars->mlx_vars->info.width / 2,
+		100,
+		(mlx_color){.rgba = 0x606010FF}, ft_itoa(vars->moves));
 }
 
 static void	move_player(t_vars *vars, int dx, int dy)
@@ -64,6 +79,7 @@ static void	move_player(t_vars *vars, int dx, int dy)
 					vars->map->map[y + dy][x + dx] = P;
 					vars->map->map[y][x] = vars->below_player;
 					vars->below_player = target;
+					vars->moves++;
 				}
 				return ;
 			}
