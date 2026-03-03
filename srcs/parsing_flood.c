@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 04:07:36 by mabenois          #+#    #+#             */
-/*   Updated: 2026/02/28 04:50:49 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/03/03 21:10:53 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static int	ft_flood_map(t_map *map, int **fld)
 	int	change;
 
 	change = 1;
-	while ((map_occ(map, fld, 0) + map_occ(map, fld, C)) > 0)
+	while (1)
 	{
 		if (change > 0)
 			change = 0;
@@ -120,3 +120,20 @@ int	ft_check_map_flood(t_map *map)
 		return (ft_error("Need valid path."));
 	return (0);
 }
+
+/*
+ft_printf("\nflood_map:\n");
+for (int y2 = 0; y2 < map->h; y2++)
+{
+	for (int x2 = 0; x2 < map->w; x2++)
+	{
+		if (flood_map[y2][x2] == 0)	
+			ft_printf("_");
+		else if (flood_map[y2][x2] == 6)	
+			ft_printf("~");
+		else
+			ft_printf("%d", flood_map[y2][x2]);
+	}
+	ft_printf("\n");
+}
+*/
