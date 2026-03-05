@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 07:42:12 by mabenois          #+#    #+#             */
-/*   Updated: 2026/03/04 00:04:40 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/03/05 20:26:59 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_draw_map(t_vars *vars)
 			b = ((vars->cam_dy - 400) + (y * 60));
 			a *= a;
 			b *= b;
-			if (a + b < 754 * 754) 
+			if (a + b < 754 * 754)
 			{
 				draw_frame(vars, vars->map->map[y][x], x, y);
 				if (vars->map->map[y][x] == C)
@@ -69,4 +69,10 @@ void	ft_draw_map(t_vars *vars)
 			}
 		}
 	}
+}
+
+void	free_map_map(t_map *map)
+{
+	free(map->map);
+	free(map);
 }

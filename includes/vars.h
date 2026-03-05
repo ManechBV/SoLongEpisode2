@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 20:54:35 by mabenois          #+#    #+#             */
-/*   Updated: 2026/03/03 23:22:49 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/03/05 20:31:05 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@
 # include "mlx.h"
 # include "mlx_extended.h"
 
-typedef struct	s_map
+typedef struct s_map
 {
 	int	**map;
 	int	w;
 	int	h;
 }	t_map;
 
-typedef struct	s_mlx_vars
+typedef struct s_mlx_vars
 {
 	mlx_context				mlx;
 	mlx_window_create_info	info;
@@ -41,19 +41,19 @@ typedef struct	s_mlx_vars
 	mlx_window				target_win;
 }	t_mlx_vars;
 
-typedef struct	s_imgs
+typedef struct s_imgs
 {
 	mlx_image	tileset;
 }	t_imgs;
 
-typedef struct	s_timers
+typedef struct s_timers
 {
 	int	coin_timer;
 	int	coin_reset;
 	int	coin_frame;
 }	t_timers;
 
-typedef struct	s_vars
+typedef struct s_vars
 {
 	t_map		*map;
 	t_mlx_vars	*mlx_vars;
@@ -93,5 +93,6 @@ void	update_loop(void *param);
 //	draw.c
 void	ft_draw_map(t_vars *vars);
 void	get_offset(t_vars *vars, int *dx, int *dy);
+void	free_map_map(t_map *map);
 
 #endif

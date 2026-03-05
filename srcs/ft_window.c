@@ -6,7 +6,7 @@
 /*   By: mabenois <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 05:33:17 by mabenois          #+#    #+#             */
-/*   Updated: 2026/03/03 23:23:03 by mabenois         ###   ########.fr       */
+/*   Updated: 2026/03/05 20:20:21 by mabenois         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	ft_load_mlx3(t_vars *vars)
 		return (ft_destroy_mlx(vars));
 	vars->mlx_vars->target_info.render_target = vars->mlx_vars->target;
 	vars->mlx_vars->target_win = mlx_new_window(vars->mlx_vars->mlx,
-		&vars->mlx_vars->target_info);
+			&vars->mlx_vars->target_info);
 	mlx_set_fps_goal(vars->mlx_vars->mlx, 60);
 	mlx_set_font_scale(vars->mlx_vars->mlx, "res/font.ttf", 69.0);
 	vars->moves = 0;
@@ -87,7 +87,6 @@ int	ft_destroy_mlx(t_vars *vars)
 		mlx_destroy_image(vars->mlx_vars->mlx, vars->mlx_vars->target);
 	if (vars->imgs->tileset != NULL)
 		mlx_destroy_image(vars->mlx_vars->mlx, vars->imgs->tileset);
-	
 	mlx_destroy_window(vars->mlx_vars->mlx, vars->mlx_vars->win);
 	mlx_destroy_context(vars->mlx_vars->mlx);
 	free(vars->mlx_vars);
