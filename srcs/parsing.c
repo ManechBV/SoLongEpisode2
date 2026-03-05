@@ -106,6 +106,7 @@ static t_map	*ft_new_map(int fd, char *filename)
 	}
 	if (ft_convert_map(filename, map) == -1)
 	{
+		free(map->map); // BITTTTTTTTTTTTTTWWWWWWWWWWWW
 		free(map);
 		return (NULL);
 	}
